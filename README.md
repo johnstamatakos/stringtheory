@@ -2,6 +2,9 @@
 
 A guitar chord identifier and explorer built as a static web app. Click frets on the fretboard to identify chords, browse voicings, and explore scales and diatonic chord suggestions.
 
+<img width="1704" height="964" alt="image" src="https://github.com/user-attachments/assets/d3a63e03-46fb-4632-b869-edc228e1616e" />
+
+
 ## Features
 
 - **Chord identification** — tap any combination of frets to instantly identify the chord and its enharmonic equivalents
