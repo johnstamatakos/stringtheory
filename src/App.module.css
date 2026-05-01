@@ -137,7 +137,7 @@
 .fretRow {
   display: flex;
   gap: 16px;
-  align-items: flex-start;
+  align-items: stretch;
 }
 
 .fretboardSection {
@@ -149,18 +149,20 @@
 .chordResultCol {
   width: 280px;
   flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 /* ── Rows 3 & 4: 50/50 panel grid ── */
 .panelRow {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 16px;
 }
 
 /* Explicit column slots for conditionally-rendered sub-panels */
-.leftCell  { grid-column: 1; }
-.rightCell { grid-column: 2; }
+.leftCell  { grid-column: 1; min-width: 0; }
+.rightCell { grid-column: 2; min-width: 0; }
 
 /* ── Mobile: stack all boxes vertically ── */
 @media (max-width: 768px) {
@@ -181,7 +183,7 @@
   }
 
   .panelRow {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .leftCell  { grid-column: 1; }

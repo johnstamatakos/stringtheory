@@ -17,9 +17,15 @@ const QUALITIES = [
   { label: 'Add9',   suffix: 'add9' },
 ]
 
-export function ChordLibrary({ onChordSelect, tuning, capo }) {
+export function ChordLibrary({ onChordSelect, tuning, capo, clearSignal }) {
   const [root, setRoot] = useState(null)
   const [quality, setQuality] = useState(QUALITIES[0])
+
+  useEffect(() => {
+    if (!clearSignal) return
+    setRoot(null)
+    setQuality(QUALITIES[0])
+  }, [clearSignal])
 
   // Load chord onto fretboard whenever root, quality, tuning, or capo changes
   useEffect(() => {

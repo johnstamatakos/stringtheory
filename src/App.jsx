@@ -20,11 +20,17 @@ export default function App() {
   const [tuning, setTuning] = useState(STANDARD_TUNING)
   const [capo, setCapo] = useState(0)
   const [scaleKey, setScaleKey] = useState(null)
+  const [clearSignal, setClearSignal] = useState(0)
 
   const { notes, chords, voicings } = useChordIdentifier(frets, tuning, capo)
   const scalePCData = scaleKey ? getScalePCs(scaleKey.root, scaleKey.type) : { pcs: [], rootPc: null }
 
-  const handleClear = useCallback(() => { setFrets(INITIAL_FRETS); setCapo(0) }, [])
+  const handleClear = useCallback(() => {
+    setFrets(INITIAL_FRETS)
+    setCapo(0)
+    setScaleKey(null)
+    setClearSignal(s => s + 1)
+  }, [])
   const handleStrum = useCallback(() => strumChord(frets, tuning, capo), [frets, tuning, capo])
   const handleVoicingPlay = useCallback((v) => strumChord(v, tuning, capo), [tuning, capo])
 
@@ -74,7 +80,7 @@ export default function App() {
 
         {/* Row 3 — Chord Library (left 50%) + Key Selector (right 50%), equal height */}
         <div className={styles.panelRow}>
-          <ChordLibrary onChordSelect={setFrets} tuning={tuning} capo={capo} />
+          <ChordLibrary onChordSelect={setFrets} tuning={tuning} capo={capo} clearSignal={clearSignal} />
           <KeySelector scaleKey={scaleKey} onScaleKeyChange={setScaleKey} />
         </div>
 
