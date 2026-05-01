@@ -23,16 +23,6 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:5173](http://localhost:5173) in your browser.
-
-To build for production:
-
-```bash
-npm run build
-```
-
-The output in `dist/` is fully static and can be deployed to any static host (GitHub Pages, Netlify, Vercel, etc.).
-
 ## How to Use
 
 1. **Identify a chord** — click frets on the board. The chord name and alternate names appear on the right. Click a fret again to deselect it; click the nut symbol (○/✕) to toggle a string open or muted.
@@ -51,5 +41,3 @@ The output in `dist/` is fully static and can be deployed to any static host (Gi
 | [Tonal](https://github.com/tonaljs/tonal) | 6 | Music theory — chord detection (`Chord.detect`), scale/key lookups, note math |
 | [@tombatossals/chords-db](https://github.com/tombatossals/chords-db) | 0.5.1 | Guitar chord voicing database (positions, fingerings) |
 | Web Audio API | — | Real-time audio synthesis for the strum feature (no external dependency) |
-
-CSS is written in plain CSS Modules — no CSS framework.
