@@ -1,0 +1,189 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 0 24px;
+}
+
+/* ── Header ── */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 0 16px;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 14px;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--color-accent);
+}
+
+.headerActions {
+  display: flex;
+  gap: 8px;
+}
+
+.strumBtn {
+  font-size: 13px;
+  padding: 6px 14px;
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+  color: var(--color-accent);
+  background: var(--color-accent-dim);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.strumBtn:hover {
+  background: rgba(232, 184, 75, 0.25);
+}
+
+.clearBtn {
+  font-size: 13px;
+  padding: 6px 14px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-muted);
+  background: none;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.clearBtn:hover {
+  color: var(--color-text);
+  border-color: var(--color-text-muted);
+}
+
+/* ── Main ── */
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-bottom: 32px;
+}
+
+/* ── Row 1: Toolbar (tuning + capo) ── */
+.toolbarSection {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.capoPanel {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.capoLabel {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.capoControls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.capoBtn {
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-2);
+  color: var(--color-text);
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.12s;
+}
+
+.capoBtn:hover:not(:disabled) {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.capoBtn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.capoValue {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text);
+  min-width: 20px;
+  text-align: center;
+  font-family: var(--font-mono);
+}
+
+/* ── Row 2: Fretboard + chord result inline ── */
+.fretRow {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.fretboardSection {
+  flex: 1;
+  min-width: 0;
+  overflow-x: auto;
+}
+
+.chordResultCol {
+  width: 280px;
+  flex-shrink: 0;
+}
+
+/* ── Rows 3 & 4: 50/50 panel grid ── */
+.panelRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* Explicit column slots for conditionally-rendered sub-panels */
+.leftCell  { grid-column: 1; }
+.rightCell { grid-column: 2; }
+
+/* ── Mobile: stack all boxes vertically ── */
+@media (max-width: 768px) {
+  .app {
+    padding: 0 12px;
+  }
+
+  .fretRow {
+    flex-direction: column;
+  }
+
+  .fretboardSection {
+    width: 100%;
+  }
+
+  .chordResultCol {
+    width: 100%;
+  }
+
+  .panelRow {
+    grid-template-columns: 1fr;
+  }
+
+  .leftCell  { grid-column: 1; }
+  .rightCell { grid-column: 1; }
+}

@@ -1,0 +1,48 @@
+/* Design tokens */
+:root {
+  --color-bg: #0f0f0f;
+  --color-surface: #1a1a1a;
+  --color-surface-2: #242424;
+  --color-border: #333;
+  --color-accent: #e8b84b;
+  --color-accent-dim: rgba(232, 184, 75, 0.15);
+  --color-text: #f0ece0;
+  --color-text-muted: #888;
+  --color-string: #c8a96e;
+  --color-fret: #3a3a3a;
+  --color-dot-active: #e8b84b;
+  --color-dot-open: #f0ece0;
+  --color-dot-muted: #555;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+
+  --font-sans: system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+  font: inherit;
+}

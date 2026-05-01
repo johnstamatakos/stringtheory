@@ -1,0 +1,242 @@
+.wrapper {
+  display: flex;
+  align-items: stretch;
+  overflow-x: auto;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 12px 12px 12px 10px;
+}
+
+/* ── String name labels ── */
+.stringLabels {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding-right: 6px;
+}
+
+.labelSpacer {
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.stringLabel {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  font-size: 11px;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+/* ── Nut column ── */
+.nutColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-right: 8px;
+  border-right: 3px solid var(--color-text);
+}
+
+.nutCell {
+  position: relative;
+  width: 36px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: var(--color-text-muted);
+  border-radius: var(--radius-sm);
+  transition: color 0.1s, background 0.1s;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.nutCell:hover { background: var(--color-surface-2); color: var(--color-text); }
+.nutCell.open  { color: var(--color-dot-open); }
+.nutCell.muted { color: var(--color-dot-muted); }
+
+.nutScaleDot {
+  position: absolute;
+  bottom: 7px;
+  right: 6px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(110, 170, 255, 0.7);
+  pointer-events: none;
+}
+
+/* ── Fret grid ── */
+.grid {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  position: relative;
+}
+
+.fretNumbers {
+  display: flex;
+}
+
+.fretLabel {
+  flex: 1;
+  min-width: 38px;
+  height: 24px;
+  font-size: 11px;
+  color: var(--color-text-muted);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 4px;
+}
+
+.marker {
+  font-size: 8px;
+  color: var(--color-text-muted);
+  letter-spacing: -2px;
+}
+
+/* ── String rows ── */
+.stringRow {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 44px;
+}
+
+.stringLine {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--color-string);
+  pointer-events: none;
+}
+
+/* Thickness — top row = high e (thin), bottom = low E (thick) */
+.thickness0 .stringLine { height: 1px; }
+.thickness1 .stringLine { height: 1px; }
+.thickness2 .stringLine { height: 2px; }
+.thickness3 .stringLine { height: 2px; }
+.thickness4 .stringLine { height: 3px; }
+.thickness5 .stringLine { height: 4px; }
+
+/* ── Fret cells ── */
+.fretCell {
+  flex: 1;
+  min-width: 38px;
+  height: 44px;
+  position: relative;
+  z-index: 1;
+  border-right: 1px solid var(--color-fret);
+  border-top: none;
+  border-left: none;
+  border-bottom: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  cursor: pointer;
+  border-radius: 0;
+}
+
+.fretCell:last-child { border-right: none; }
+
+/* Faint warm highlight on position-marker frets (3, 5, 7, 9) */
+.fretCell.markerCol {
+  background: rgba(232, 184, 75, 0.055);
+}
+
+.fretCell:hover::after {
+  content: '';
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--color-accent-dim);
+  border: 2px solid var(--color-accent);
+  position: absolute;
+  z-index: 2;
+}
+
+.fretCell.active::after {
+  content: '';
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--color-dot-active);
+  position: absolute;
+  box-shadow: 0 0 8px rgba(232, 184, 75, 0.5);
+  z-index: 2;
+}
+
+.fretCell.behindCapo {
+  cursor: not-allowed;
+  opacity: 0.25;
+}
+
+.fretCell.behindCapo:hover::after { display: none; }
+
+/* ── Scale overlay dots ──
+   Scale tone: sky blue  (#38bdf8)  — clearly distinct from gold chord dots
+   Root PC:    fuchsia   (#e879f9)  — pops even more, unmistakable as root
+   z-index: 3 puts them in front of the ::after hover/active pseudo-elements (z-index auto)
+*/
+.scaleDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 5px rgba(56, 189, 248, 0.7);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  pointer-events: none;
+}
+
+.scaleDot.rootDot {
+  background: #e879f9;
+  box-shadow: 0 0 6px rgba(232, 121, 249, 0.8);
+  width: 12px;
+  height: 12px;
+}
+
+.nutScaleDot {
+  position: absolute;
+  bottom: 6px;
+  right: 5px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 4px rgba(56, 189, 248, 0.8);
+  pointer-events: none;
+}
+
+.nutScaleDot.rootDot {
+  background: #e879f9;
+  box-shadow: 0 0 4px rgba(232, 121, 249, 0.9);
+}
+
+/* ── Capo bar ── */
+.capoBar {
+  position: absolute;
+  top: 24px;
+  bottom: 0;
+  width: 6px;
+  background: var(--color-text-muted);
+  border-radius: 3px;
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0.7;
+}
